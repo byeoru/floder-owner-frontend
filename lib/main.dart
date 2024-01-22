@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const FloderOwnerApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const ProviderScope(child: FloderOwnerApp()));
 }
 
 class FloderOwnerApp extends ConsumerWidget {
