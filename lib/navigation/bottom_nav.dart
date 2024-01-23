@@ -1,10 +1,13 @@
-import 'package:floder_owner/constants/gaps.dart';
-import 'package:floder_owner/features/manage/views/manage_screen.dart';
+import 'package:floder_owner/features/store/views/store_screen.dart';
 import 'package:floder_owner/features/me/views/me_screen.dart';
 import 'package:floder_owner/features/order/views/order_screen.dart';
+import 'package:floder_owner/features/sales/views/sales_screen.dart';
 import 'package:floder_owner/features/waiting/views/waiting_screen.dart';
+import 'package:floder_owner/navigation/widgets/nav_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+enum ETabs { order, waiting, store, sales, me }
 
 class BottomNavScreen extends StatefulWidget {
   static const String routeName = "bottomNav";
@@ -20,7 +23,13 @@ class BottomNavScreen extends StatefulWidget {
 }
 
 class _BottomNavScreenState extends State<BottomNavScreen> {
-  final List<String> _tabs = ["order", "waiting", "manage", "me"];
+  final List<String> _tabs = [
+    ETabs.order.toString(),
+    ETabs.waiting.toString(),
+    ETabs.store.toString(),
+    ETabs.sales.toString(),
+    ETabs.me.toString(),
+  ];
   late int _tabIndex = _tabs.indexOf(widget.tab);
 
   void _onTap(int index) {
@@ -44,10 +53,14 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
           ),
           Offstage(
             offstage: _tabIndex != 2,
-            child: const ManageScreen(),
+            child: const StoreScreen(),
           ),
           Offstage(
             offstage: _tabIndex != 3,
+            child: const SalesScreen(),
+          ),
+          Offstage(
+            offstage: _tabIndex != 4,
             child: const MeScreen(),
           ),
         ],
@@ -57,93 +70,35 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: GestureDetector(
-                onTap: () => _onTap(0),
-                child: Container(
-                  decoration: const BoxDecoration(),
-                  child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 200),
-                    opacity: _tabIndex == 0 ? 1 : 0.5,
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.pizzaSlice,
-                        ),
-                        Gaps.v10,
-                        Text("주문"),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+            NavTap(
+              title: "주문",
+              iconData: FontAwesomeIcons.cartShopping,
+              isSelected: _tabIndex == 0,
+              onTap: () => _onTap(0),
             ),
-            Expanded(
-              child: GestureDetector(
-                onTap: () => _onTap(1),
-                child: Container(
-                  decoration: const BoxDecoration(),
-                  child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 200),
-                    opacity: _tabIndex == 1 ? 1 : 0.5,
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.personBooth,
-                        ),
-                        Gaps.v10,
-                        Text("웨이팅"),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+            NavTap(
+              title: "웨이팅",
+              iconData: FontAwesomeIcons.personBooth,
+              isSelected: _tabIndex == 1,
+              onTap: () => _onTap(1),
             ),
-            Expanded(
-              child: GestureDetector(
-                onTap: () => _onTap(2),
-                child: Container(
-                  decoration: const BoxDecoration(),
-                  child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 200),
-                    opacity: _tabIndex == 2 ? 1 : 0.5,
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.listCheck,
-                        ),
-                        Gaps.v10,
-                        Text("매장 관리"),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+            NavTap(
+              title: "매장 관리",
+              iconData: FontAwesomeIcons.store,
+              isSelected: _tabIndex == 2,
+              onTap: () => _onTap(2),
             ),
-            Expanded(
-              child: GestureDetector(
-                onTap: () => _onTap(3),
-                child: Container(
-                  decoration: const BoxDecoration(),
-                  child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 200),
-                    opacity: _tabIndex == 3 ? 1 : 0.5,
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.f,
-                        ),
-                        Gaps.v10,
-                        Text("my 플로더"),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+            NavTap(
+              title: "매출 현황",
+              iconData: FontAwesomeIcons.chartColumn,
+              isSelected: _tabIndex == 3,
+              onTap: () => _onTap(3),
+            ),
+            NavTap(
+              title: "my 플로더",
+              iconData: FontAwesomeIcons.f,
+              isSelected: _tabIndex == 4,
+              onTap: () => _onTap(4),
             ),
           ],
         ),
