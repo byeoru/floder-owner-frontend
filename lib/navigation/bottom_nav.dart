@@ -1,3 +1,4 @@
+import 'package:floder_owner/constants/sizes.dart';
 import 'package:floder_owner/features/store/views/store_screen.dart';
 import 'package:floder_owner/features/me/views/me_screen.dart';
 import 'package:floder_owner/features/order/views/order_screen.dart';
@@ -27,11 +28,11 @@ class BottomNavScreen extends StatefulWidget {
 
 class _BottomNavScreenState extends State<BottomNavScreen> {
   final List<String> _tabs = [
-    ETabs.order.toString(),
-    ETabs.waiting.toString(),
-    ETabs.store.toString(),
-    ETabs.sales.toString(),
-    ETabs.me.toString(),
+    "order",
+    "waiting",
+    "store",
+    "sales",
+    "me",
   ];
   late int _tabIndex = _tabs.indexOf(widget.tab);
 
@@ -44,7 +45,6 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       body: Stack(
         children: [
           Offstage(
@@ -69,42 +69,48 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomAppBar(
-        padding: EdgeInsets.zero,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            NavTap(
-              title: "주문",
-              iconData: FontAwesomeIcons.cartShopping,
-              isSelected: _tabIndex == 0,
-              onTap: () => _onTap(0),
-            ),
-            NavTap(
-              title: "웨이팅",
-              iconData: FontAwesomeIcons.personBooth,
-              isSelected: _tabIndex == 1,
-              onTap: () => _onTap(1),
-            ),
-            NavTap(
-              title: "매장 관리",
-              iconData: FontAwesomeIcons.store,
-              isSelected: _tabIndex == 2,
-              onTap: () => _onTap(2),
-            ),
-            NavTap(
-              title: "매출 현황",
-              iconData: FontAwesomeIcons.chartColumn,
-              isSelected: _tabIndex == 3,
-              onTap: () => _onTap(3),
-            ),
-            NavTap(
-              title: "my 플로더",
-              iconData: FontAwesomeIcons.f,
-              isSelected: _tabIndex == 4,
-              onTap: () => _onTap(4),
-            ),
-          ],
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(Sizes.size20),
+          topRight: Radius.circular(Sizes.size20),
+        ),
+        child: BottomAppBar(
+          padding: EdgeInsets.zero,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              NavTap(
+                title: "주문",
+                iconData: FontAwesomeIcons.cartShopping,
+                isSelected: _tabIndex == 0,
+                onTap: () => _onTap(0),
+              ),
+              NavTap(
+                title: "웨이팅",
+                iconData: FontAwesomeIcons.personBooth,
+                isSelected: _tabIndex == 1,
+                onTap: () => _onTap(1),
+              ),
+              NavTap(
+                title: "매장 관리",
+                iconData: FontAwesomeIcons.store,
+                isSelected: _tabIndex == 2,
+                onTap: () => _onTap(2),
+              ),
+              NavTap(
+                title: "매출 현황",
+                iconData: FontAwesomeIcons.chartColumn,
+                isSelected: _tabIndex == 3,
+                onTap: () => _onTap(3),
+              ),
+              NavTap(
+                title: "my 플로더",
+                iconData: FontAwesomeIcons.f,
+                isSelected: _tabIndex == 4,
+                onTap: () => _onTap(4),
+              ),
+            ],
+          ),
         ),
       ),
     );
