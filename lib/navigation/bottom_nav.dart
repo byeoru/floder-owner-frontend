@@ -9,6 +9,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 enum ETabs { order, waiting, store, sales, me }
 
+final String formattedTaps =
+    ETabs.values.map((tap) => tap.toString().split(".")[1]).join("|");
+
 class BottomNavScreen extends StatefulWidget {
   static const String routeName = "bottomNav";
   final String tab;
@@ -41,6 +44,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       body: Stack(
         children: [
           Offstage(

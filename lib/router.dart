@@ -1,9 +1,7 @@
+import 'package:floder_owner/features/store/views/menu_detail_screen.dart';
 import 'package:floder_owner/navigation/bottom_nav.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-
-final String formattedTaps =
-    ETabs.values.map((tap) => tap.toString()).join("|");
 
 final routerProvider = Provider((ref) {
   return GoRouter(
@@ -16,6 +14,14 @@ final routerProvider = Provider((ref) {
           return BottomNavScreen(tab: tab);
         },
       ),
+      GoRoute(
+        path: "${MenuDetailScreen.routeUrl}/:pk",
+        name: MenuDetailScreen.routeName,
+        builder: (context, state) {
+          final pk = state.pathParameters["pk"]!;
+          return MenuDetailScreen(pk: pk);
+        },
+      )
     ],
   );
 });

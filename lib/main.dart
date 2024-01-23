@@ -2,6 +2,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:floder_owner/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,6 +15,7 @@ class FloderOwnerApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       routerConfig: ref.watch(routerProvider),
       title: "Floder Owner",
@@ -28,13 +30,13 @@ class FloderOwnerApp extends ConsumerWidget {
           useM2StyleDividerInM3: true,
           alignedDropdown: true,
           useInputDecoratorThemeInDialogs: true,
+          appBarBackgroundSchemeColor: SchemeColor.surfaceTint,
         ),
         keyColors: const FlexKeyColors(),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
         useMaterial3: true,
         swapLegacyOnMaterial3: true,
-        // To use the Playground font, add GoogleFonts package and uncomment
-        // fontFamily: GoogleFonts.notoSans().fontFamily,
+        fontFamily: GoogleFonts.notoSansKr().fontFamily,
       ),
       darkTheme: FlexThemeData.dark(
         scheme: FlexScheme.amber,
@@ -51,6 +53,7 @@ class FloderOwnerApp extends ConsumerWidget {
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
         useMaterial3: true,
         swapLegacyOnMaterial3: true,
+        fontFamily: GoogleFonts.notoSansKr().fontFamily,
       ),
     );
   }
