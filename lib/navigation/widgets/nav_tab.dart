@@ -1,4 +1,5 @@
 import 'package:floder_owner/constants/gaps.dart';
+import 'package:floder_owner/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -32,14 +33,16 @@ class NavTap extends StatelessWidget {
               children: [
                 FaIcon(
                   iconData,
+                  size: Sizes.size16,
                   color: isSelected ? Theme.of(context).primaryColor : null,
                 ),
                 Gaps.v10,
                 Text(
                   title,
-                  style: TextStyle(
-                    color: isSelected ? Theme.of(context).primaryColor : null,
-                  ),
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color:
+                            isSelected ? Theme.of(context).primaryColor : null,
+                      ),
                 ),
               ],
             ),

@@ -69,48 +69,49 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.only(
+      bottomNavigationBar: Container(
+        height: 80,
+        clipBehavior: Clip.hardEdge,
+        decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
           topLeft: Radius.circular(Sizes.size20),
           topRight: Radius.circular(Sizes.size20),
-        ),
-        child: BottomAppBar(
-          padding: EdgeInsets.zero,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              NavTap(
-                title: "주문",
-                iconData: FontAwesomeIcons.cartShopping,
-                isSelected: _tabIndex == 0,
-                onTap: () => _onTap(0),
-              ),
-              NavTap(
-                title: "웨이팅",
-                iconData: FontAwesomeIcons.personBooth,
-                isSelected: _tabIndex == 1,
-                onTap: () => _onTap(1),
-              ),
-              NavTap(
-                title: "매장 관리",
-                iconData: FontAwesomeIcons.store,
-                isSelected: _tabIndex == 2,
-                onTap: () => _onTap(2),
-              ),
-              NavTap(
-                title: "매출 현황",
-                iconData: FontAwesomeIcons.chartColumn,
-                isSelected: _tabIndex == 3,
-                onTap: () => _onTap(3),
-              ),
-              NavTap(
-                title: "my 플로더",
-                iconData: FontAwesomeIcons.f,
-                isSelected: _tabIndex == 4,
-                onTap: () => _onTap(4),
-              ),
-            ],
-          ),
+        )),
+        padding: const EdgeInsets.only(bottom: Sizes.size10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            NavTap(
+              title: "주문",
+              iconData: FontAwesomeIcons.cartShopping,
+              isSelected: _tabIndex == 0,
+              onTap: () => _onTap(0),
+            ),
+            NavTap(
+              title: "웨이팅",
+              iconData: FontAwesomeIcons.personBooth,
+              isSelected: _tabIndex == 1,
+              onTap: () => _onTap(1),
+            ),
+            NavTap(
+              title: "매장 관리",
+              iconData: FontAwesomeIcons.store,
+              isSelected: _tabIndex == 2,
+              onTap: () => _onTap(2),
+            ),
+            NavTap(
+              title: "매출 현황",
+              iconData: FontAwesomeIcons.chartColumn,
+              isSelected: _tabIndex == 3,
+              onTap: () => _onTap(3),
+            ),
+            NavTap(
+              title: "my 플로더",
+              iconData: FontAwesomeIcons.f,
+              isSelected: _tabIndex == 4,
+              onTap: () => _onTap(4),
+            ),
+          ],
         ),
       ),
     );
