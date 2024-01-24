@@ -33,13 +33,13 @@ class NavTap extends StatelessWidget {
               children: [
                 FaIcon(
                   iconData,
-                  size: Sizes.size16,
+                  size: Sizes.size20,
                   color: isSelected ? Theme.of(context).primaryColor : null,
                 ),
                 Gaps.v10,
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color:
                             isSelected ? Theme.of(context).primaryColor : null,
                       ),
