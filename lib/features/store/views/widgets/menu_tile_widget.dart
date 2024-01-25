@@ -9,6 +9,7 @@ class MenuTileWidget extends StatelessWidget {
   final String name;
   final int normalPrice;
   final int? disPrice;
+  final int? count;
 
   const MenuTileWidget({
     super.key,
@@ -16,12 +17,14 @@ class MenuTileWidget extends StatelessWidget {
     required this.name,
     required this.normalPrice,
     required this.disPrice,
+    required this.count,
   });
 
   void _onTap(BuildContext context) {
     context.pushNamed(
       MenuDetailScreen.routeName,
       pathParameters: {"pk": pk.toString()},
+      extra: name,
     );
   }
 
@@ -30,48 +33,60 @@ class MenuTileWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => _onTap(context),
       child: GridTile(
-        footer: ListTile(
-          isThreeLine: true,
-          title: Text(
-            name,
-            style: Theme.of(context).textTheme.titleMedium!.copyWith(
-              shadows: [
-                Shadow(
-                  color:
-                      Utils.isDarkMode(context) ? Colors.black : Colors.white,
-                  offset: const Offset(1.1, 1.1),
-                  blurRadius: 0.1,
-                ),
-              ],
-            ),
+        header: ListTile(
+          titleTextStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
+            color: Colors.white,
+            shadows: [
+              const Shadow(
+                color: Colors.black,
+                offset: Offset(1.05, 1.05),
+                blurRadius: 0.1,
+              ),
+            ],
           ),
-          subtitle: Text(
-            "정가: $normalPrice\n할인가: ${disPrice ?? "할인 없음"}",
-            style: Theme.of(context).textTheme.titleSmall!.copyWith(
-              shadows: [
-                Shadow(
-                  color:
-                      Utils.isDarkMode(context) ? Colors.black : Colors.white,
-                  offset: const Offset(1.1, 1.1),
-                  blurRadius: 0.1,
-                ),
-              ],
-            ),
-          ),
+          title: Text(count == null ? "준비중" : "남은 개수: $count"),
         ),
-        child: Container(
-          clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(
-            color: Utils.isDarkMode(context)
-                ? Theme.of(context).primaryColor.withOpacity(0.2)
-                : Colors.white38,
-            borderRadius: const BorderRadius.all(
-              Radius.circular(Sizes.size20),
-            ),
+        footer: ListTile(
+          titleTextStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
+            color: Colors.white,
+            shadows: [
+              const Shadow(
+                color: Colors.black,
+                offset: Offset(1.05, 1.05),
+                blurRadius: 0.1,
+              ),
+            ],
           ),
-          child: Image.asset(
-            "assets/images/test.jpg",
-            fit: BoxFit.cover,
+          subtitleTextStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
+            color: Colors.white,
+            shadows: [
+              const Shadow(
+                color: Colors.black,
+                offset: Offset(1.05, 1.05),
+                blurRadius: 0.1,
+              ),
+            ],
+          ),
+          isThreeLine: true,
+          title: Text(name),
+          subtitle: Text("정가: $normalPrice\n할인가: ${disPrice ?? "할인 없음"}"),
+        ),
+        child: Opacity(
+          opacity: count == null ? 0.3 : 1,
+          child: Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+              color: Utils.isDarkMode(context)
+                  ? Theme.of(context).primaryColor.withOpacity(0.2)
+                  : Colors.white38,
+              borderRadius: const BorderRadius.all(
+                Radius.circular(Sizes.size20),
+              ),
+            ),
+            child: Image.asset(
+              "assets/images/test.jpg",
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),

@@ -4,30 +4,34 @@ import 'package:flutter/material.dart';
 
 class TileNameWidget extends StatelessWidget {
   final String name;
+  final Color? color;
 
   const TileNameWidget({
     super.key,
     required this.name,
+    required this.color,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Gaps.v10,
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: Sizes.size16,
+    return Container(
+      decoration: BoxDecoration(color: color),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: Sizes.size16,
+            ),
+            child: Text(
+              name,
+              style: Theme.of(context).textTheme.titleLarge,
+              textAlign: TextAlign.start,
+            ),
           ),
-          child: Text(
-            name,
-            style: Theme.of(context).textTheme.titleLarge,
-            textAlign: TextAlign.start,
-          ),
-        ),
-        Gaps.v5,
-      ],
+          Gaps.v8,
+        ],
+      ),
     );
   }
 }

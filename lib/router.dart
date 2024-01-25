@@ -19,7 +19,11 @@ final routerProvider = Provider((ref) {
         name: MenuDetailScreen.routeName,
         builder: (context, state) {
           final pk = state.pathParameters["pk"]!;
-          return MenuDetailScreen(pk: pk);
+          final menuName = state.extra as String;
+          return MenuDetailScreen(
+            pk: pk,
+            name: menuName,
+          );
         },
       )
     ],

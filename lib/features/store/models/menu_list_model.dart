@@ -4,6 +4,7 @@ class MenuListModel {
   final String description;
   final int normalPrice;
   final int? disPrice;
+  final int? count;
 
   MenuListModel({
     required this.pk,
@@ -11,6 +12,7 @@ class MenuListModel {
     required this.description,
     required this.normalPrice,
     required this.disPrice,
+    required this.count,
   });
 
   MenuListModel.fromJson(Map<dynamic, dynamic> json)
@@ -18,5 +20,6 @@ class MenuListModel {
         name = json["name"],
         description = json["description"],
         normalPrice = json["normalPrice"],
-        disPrice = json["disPrice"];
+        disPrice = json["disPrice"],
+        count = json["count"];
 }

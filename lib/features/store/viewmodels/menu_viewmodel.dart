@@ -12,6 +12,11 @@ class MenuViewModel extends AsyncNotifier<List<MenuListModel>> {
     _menuRepository = ref.read(menuRepository);
     return await _menuRepository.getMenus();
   }
+
+  Future<void> getMenus() async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() => _menuRepository.getMenus());
+  }
 }
 
 final menuViewModel = AsyncNotifierProvider<MenuViewModel, List<MenuListModel>>(
