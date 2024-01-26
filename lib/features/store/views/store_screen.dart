@@ -1,14 +1,24 @@
 import 'package:floder_owner/constants/gaps.dart';
 import 'package:floder_owner/constants/sizes.dart';
 import 'package:floder_owner/features/store/viewmodels/menu_viewmodel.dart';
+import 'package:floder_owner/features/store/views/menu_add_screen.dart';
 import 'package:floder_owner/features/store/views/widgets/menu_tile_widget.dart';
 import 'package:floder_owner/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class StoreScreen extends ConsumerWidget {
   const StoreScreen({super.key});
+
+  void _onAddMenuBtnTap(BuildContext context) {
+    context.pushNamed(
+      MenuAddScreen.routeName,
+      pathParameters: {"tab": "store"},
+    );
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -51,9 +61,7 @@ class StoreScreen extends ConsumerWidget {
                             ),
                             CupertinoTimerPicker(
                               mode: CupertinoTimerPickerMode.hm,
-                              onTimerDurationChanged: (value) {
-                                
-                              },
+                              onTimerDurationChanged: (value) {},
                             ),
                           ],
                         ),
@@ -119,14 +127,35 @@ class StoreScreen extends ConsumerWidget {
                             mainAxisSpacing: Sizes.size5,
                             crossAxisSpacing: Sizes.size5,
                           ),
-                          itemCount: menu.length,
-                          itemBuilder: (context, index) => MenuTileWidget(
-                            pk: menu[index].pk,
-                            name: menu[index].name,
-                            normalPrice: menu[index].normalPrice,
-                            disPrice: menu[index].disPrice,
-                            count: menu[index].count,
-                          ),
+                          itemCount: menu.length + 1,
+                          itemBuilder: (context, index) => index == 0
+                              ? GestureDetector(
+                                  onTap: () => _onAddMenuBtnTap(context),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Theme.of(context).primaryColor,
+                                        width: 0.5,
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(Sizes.size20),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: FaIcon(
+                                        FontAwesomeIcons.plus,
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : MenuItemWidget(
+                                  pk: menu[index].pk,
+                                  name: menu[index].name,
+                                  normalPrice: menu[index].normalPrice,
+                                  disPrice: menu[index].disPrice,
+                                  count: menu[index].count,
+                                ),
                         ),
                       ),
                 ],

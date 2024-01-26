@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MenuDetailScreen extends ConsumerWidget {
-  static const String routeUrl = "/menu";
-  static const String routeName = "menu";
+  static const String routeUrl = "menu";
+  static const String routeName = "menuDetail";
   final String pk;
   final String name;
 

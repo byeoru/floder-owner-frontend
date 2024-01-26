@@ -4,14 +4,14 @@ import 'package:floder_owner/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class MenuTileWidget extends StatelessWidget {
+class MenuItemWidget extends StatelessWidget {
   final int pk;
   final String name;
   final int normalPrice;
   final int? disPrice;
   final int? count;
 
-  const MenuTileWidget({
+  const MenuItemWidget({
     super.key,
     required this.pk,
     required this.name,

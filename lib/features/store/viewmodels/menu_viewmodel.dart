@@ -9,8 +9,10 @@ class MenuViewModel extends AsyncNotifier<List<MenuListModel>> {
 
   @override
   FutureOr<List<MenuListModel>> build() async {
-    _menuRepository = ref.read(menuRepository);
-    return await _menuRepository.getMenus();
+    // _menuRepository = ref.read(menuRepository);
+    // return await _menuRepository.getMenus();
+    await Future.delayed(const Duration(seconds: 1));
+    return List.empty();
   }
 
   Future<void> getMenus() async {
