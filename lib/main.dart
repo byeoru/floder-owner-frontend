@@ -1,15 +1,17 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:floder_owner/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   await Supabase.initialize(
-    url: 'https://xyzcompany.supabase.co',
-    anonKey: 'public-anon-key',
+    url: "https://xyzcompany.supabase.co",
+    anonKey: dotenv.env["PUBLIC_ANON_KEY"]!,
   );
   runApp(const ProviderScope(child: FloderOwnerApp()));
 }

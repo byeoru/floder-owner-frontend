@@ -8,15 +8,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 
 class StoreScreen extends ConsumerWidget {
   const StoreScreen({super.key});
 
   void _onAddMenuBtnTap(BuildContext context) {
-    context.pushNamed(
-      MenuAddScreen.routeName,
-      pathParameters: {"tab": "store"},
+    showModalBottomSheet(
+      context: context,
+      isDismissible: false,
+      scrollControlDisabledMaxHeightRatio: 0.8,
+      builder: (context) => const MenuAddScreen(),
     );
   }
 

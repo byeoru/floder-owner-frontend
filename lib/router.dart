@@ -1,14 +1,18 @@
-import 'package:floder_owner/features/store/views/menu_add_screen.dart';
+import 'package:floder_owner/features/auth/views/login_screen.dart';
 import 'package:floder_owner/features/store/views/menu_detail_screen.dart';
 import 'package:floder_owner/navigation/bottom_nav.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 final routerProvider = Provider((ref) {
   return GoRouter(
-    initialLocation: "/order",
+    initialLocation: "/login",
     routes: [
+      GoRoute(
+        path: LoginScreen.routeUrl,
+        name: LoginScreen.routeName,
+        builder: (context, state) => const LoginScreen(),
+      ),
       GoRoute(
         path: "/:tab($formattedTaps)",
         builder: (context, state) {
@@ -27,14 +31,6 @@ final routerProvider = Provider((ref) {
                 name: menuName,
               );
             },
-          ),
-          GoRoute(
-            path: MenuAddScreen.routeUrl,
-            name: MenuAddScreen.routeName,
-            pageBuilder: (context, state) => const MaterialPage(
-              fullscreenDialog: true,
-              child: MenuAddScreen(),
-            ),
           ),
         ],
       ),
